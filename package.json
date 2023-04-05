@@ -1,7 +1,7 @@
 {
     "name": "loonode",
     "description": "A clean, minimal theme for the Ghost publishing platform",
-    "version": "0.1",
+    "version": "1.0.0",
     "engines": {
         "ghost": ">=5.0.0"
     },
@@ -59,7 +59,8 @@
         "postcss": "8.2.13",
         "postcss-color-mod-function": "3.0.3",
         "postcss-easy-import": "4.0.0",
-        "pump": "3.0.0"
+        "pump": "3.0.0",
+        "tailwindcss": "^3.3.1"
     },
     "browserslist": [
         "defaults"
@@ -112,21 +113,6 @@
                     "Elegant serif"
                 ],
                 "default": "Elegant serif"
-            },
-            "show_publication_cover": {
-                "type": "boolean",
-                "default": true,
-                "group": "homepage"
-            },
-            "header_style": {
-                "type": "select",
-                "options": [
-                    "Center aligned",
-                    "Left aligned",
-                    "Hidden"
-                ],
-                "default": "Center aligned",
-                "group": "homepage"
             },
             "feed_layout": {
                 "type": "select",
