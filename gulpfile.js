@@ -12,6 +12,7 @@ const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const beeper = require('beeper');
 const fs = require('fs');
+const tailwind = require('tailwindcss')
 
 // postcss plugins
 const autoprefixer = require('autoprefixer');
@@ -19,8 +20,8 @@ const colorFunction = require('postcss-color-mod-function');
 const cssnano = require('cssnano');
 const easyimport = require('postcss-easy-import');
 
-const REPO = 'TryGhost/Casper';
-const REPO_READONLY = 'TryGhost/Casper';
+const REPO = 'dhanukaShamen/Loonode';
+const REPO_READONLY = 'dhanukaShamen/Loonode';
 const CHANGELOG_PATH = path.join(process.cwd(), '.', 'changelog.md');
 
 function serve(done) {
@@ -50,6 +51,7 @@ function css(done) {
         postcss([
             easyimport,
             colorFunction(),
+            tailwind(), 
             autoprefixer(),
             cssnano()
         ]),

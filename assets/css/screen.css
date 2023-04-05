@@ -28,6 +28,11 @@ production stylesheet in assets/built/screen.css
 /* Import CSS reset and base styles */
 @import "global.css";
 
+/* Tailwind - add this part */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 :root {
 
     /* Colours */
