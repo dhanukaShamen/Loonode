@@ -115,10 +115,8 @@ production stylesheet in assets/built/screen.css
     position: relative;
     z-index: 100;
     display: flex;
-    align-items: center;
     padding-top: calc(19vmin + 44px);
     padding-bottom: 19vmin;
-    text-align: center;
     color: var(--color-darkgrey);
 }
 
@@ -278,7 +276,7 @@ production stylesheet in assets/built/screen.css
     color: #fff;
 }
 
-:is(.home-template, .paged:not(.tag-template):not(.author-template)).has-cover .gh-head {
+:is(.home-template, .paged:not(.tag-template):not(.author-template)) .gh-head {
     position: absolute;
     top: 0;
     right: 0;
