@@ -2,7 +2,7 @@ $(document).ready(function(){
     $('.owl-carousel').owlCarousel({
       // Add your Owl Carousel settings here
       loop:true,
-      margin:15,
+      margin:30,
       autoHeight:true,
       responsive:{
           0:{

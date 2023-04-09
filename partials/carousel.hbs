@@ -1,6 +1,38 @@
+<!--
 <div class="owl-carousel translate-y-[-50%] z-[100]">
-  <div class="item rounded-2xl overflow-hidden" style="height:200px"><img src="https://swiperjs.com/demos/images/nature-1.jpg"></div>
-  <div class="item rounded-2xl overflow-hidden" style="height:200px"><img src="https://swiperjs.com/demos/images/nature-2.jpg"></div>
-  <div class="item rounded-2xl overflow-hidden" style="height:200px"><img src="https://swiperjs.com/demos/images/nature-3.jpg"></div>
-  <div class="item rounded-2xl overflow-hidden" style="height:200px"><img src="https://swiperjs.com/demos/images/nature-4.jpg"></div>
+  <div class="item rounded-2xl overflow-hidden h-[200px]">
+    <div class="relative"><img src="https://swiperjs.com/demos/images/nature-1.jpg" class="blur-sm"></div>
+    <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center">
+    <div class="text-white text-6xl">01</div></div>
+    </div>
+  <div class="item rounded-2xl overflow-hidden h-[200px]">
+    <div class="relative"><img src="https://swiperjs.com/demos/images/nature-2.jpg" class="blur-sm"></div>
+    <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center">
+    <div class="text-white text-6xl">02</div></div>
+    </div>
+  <div class="item rounded-2xl overflow-hidden h-[200px]">
+    <div class="relative"><img src="https://swiperjs.com/demos/images/nature-3.jpg" class="blur-sm"></div>
+    <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center">
+    <div class="text-white text-6xl">03</div></div>
+    </div>
+  <div class="item rounded-2xl overflow-hidden h-[200px]">
+    <div class="relative"><img src="https://swiperjs.com/demos/images/nature-4.jpg" class="blur-sm"></div>
+    <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center">
+    <div class="text-white text-6xl">04</div></div>
+    </div>
+</div> -->
+
+<div class="owl-carousel translate-y-[-50%] z-[100] h-[200px]">
+{{#get "tags" limit="all"}}
+  {{#foreach tags}}
+    <div class="item rounded-2xl overflow-hidden h-[200px] hover:translate-y-[-4px] duration-100">
+      <div class="relative">
+        <img src="{{feature_image}}">
+      </div>
+      <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center">
+        <div class="text-white text-6xl">{{name}}</div>
+      </div>
+    </div>
+  {{/foreach}}
+{{/get}}
 </div>
