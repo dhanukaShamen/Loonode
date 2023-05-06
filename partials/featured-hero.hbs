@@ -1,24 +1,38 @@
-<div class="site-header-content outer h-[600px]">
-{{#get "posts" limit="1" filter="featured:true" include="tags,authors" as |post|}}
-    {{#foreach post}}
-    <div>
-            {{!-- This is a responsive image, it loads different sizes depending on device
-            https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
-            <img class="site-header-cover"
-                srcset="{{img_url feature_image size="s"}} 300w,
-                        {{img_url feature_image size="m"}} 600w,
-                        {{img_url feature_image size="l"}} 1000w,
-                        {{img_url feature_image size="xl"}} 2000w"
-                sizes="100vw"
-                src="{{img_url feature_image size="xl"}}"
-                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-            />
-    </div>
-    <div class="site-header-inner inner">
-        <div class="text-9xl w-1/2 site-title text-white"> {{title}} </div>
-        <div class="post-card-excerpt w-1/2 text-white"> {{excerpt}} </div>
-        <button>Reed More</button>
-    </div>
-    {{/foreach}}
-{{/get}}
+<div class="site-header-content outer h-auto flex-col mb-52 !pb-0">
+    {{#get "posts" limit="1" filter="featured:true" include="tags,authors" as |post|}}
+        {{#foreach post}}
+        <div class="gradient-overlay">
+                {{!-- This is a responsive image, it loads different sizes depending on device
+                https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
+                <div class="site-header-cover" style="
+                    background-image: url('{{img_url feature_image size="xl"}}');
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;">
+                </div>
+        </div>
+        <div class="site-header-inner inner z-[1]">
+            <div class="post-card-tags">
+                {{#primary_tag}}
+                <a href="{{url}}" title="{{name}}">
+                    <span class="post-card-primary-tag text-accent-color text-2xl tracking-wider"> {{name}} </span>
+                </a>
+                {{/primary_tag}}
+            </div>
+            <a href="{{url}}">
+                <div class="text-7xl w-full md:w-1/2 site-title text-white drop-shadow-xl"> {{title}} </div>
+                <div class="text-slate-100 mt-3 mb-3 text-2xl font-medium drop-shadow-xl">
+                    <time class="byline-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
+                    {{#if reading_time}}
+                        <span class="byline-reading-time"><span class="bull">&bull;</span> {{reading_time}}</span>
+                    {{/if}}
+                </div>
+                <div class="post-card-excerpt w-full md:w-1/2  text-white drop-shadow-xl"> {{excerpt}} </div>
+                <button type="button" class="text-white bg-btn-bg text-2xl drop-shadow-xl font-semibold tracking-wide backdrop-blur mt-8 p-5 pl-8 pr-8 border border-gray-500 rounded-md shadow flex items-center hover:backdrop-blur-md hover:bg-btn-bg-ho hover:ring-offset-1 hover:ring-4 hover:ring-white ease-in duration-150" onclick="window.location.href='{{url}}';">Reed More {{> "icons/right"}}</button>
+            </a>
+        </div>
+        {{/foreach}}
+    {{/get}}
+    {{> "carousel"}}
 </div>
