@@ -1,0 +1,40 @@
+<nav class="pagination" role="navigation">
+    <div class="bg-white inline-flex">
+        {{#if prev}}
+            <a class="prev hover:text-white hover:bg-accent-color border px-3 py-2" href="{{page_url prev}}">&larr; Prev</a>
+        {{/if}}
+        <div class="page-nums flex">
+            {{!-- <a href="" class="current">{{page}}</a>
+            <a href="">1</a> --}}
+        </div>
+        {{#if next}}
+            <a class="next hover:text-white hover:bg-accent-color border px-3 py-2" href="{{page_url next}}">Next &rarr;</a>
+        {{/if}}
+    </div>
+</nav>
+
+<script>
+    var pageTotal = parseInt("{{pages}}"),
+        pageCurrent = parseInt("{{page}}"),
+        limitPage = 5,
+        page = 1,
+        pageNums = document.querySelector('.pagination .page-nums');
+
+
+    if(pageCurrent >= limitPage) {
+        page = pageCurrent - 1;
+        pageNums.innerHTML += '<a class="first hover:text-white hover:bg-accent-color border px-3 py-2" href="{{page_url}}page/' + 1 + '">First</a>';
+    }
+
+    for(i = 0; i < limitPage; i++) {
+
+        if(page === pageCurrent) {
+            pageNums.innerHTML += '<a class="current text-white bg-accent-color border px-3 py-2" href="{{page_url}}page/{{page}}">{{page}}</a>';
+        }
+        else if(page <= pageTotal){
+            pageNums.innerHTML += '<a class="hover:text-white hover:bg-accent-color border px-3 py-2" href="{{page_url}}page/' + page + '">'  + page + '</a>'
+        }
+        page++;
+    }
+
+</script>
