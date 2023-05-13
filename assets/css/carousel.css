@@ -6,6 +6,10 @@
 .swiper-slide {
     background-position: center;
     background-size: cover;
+    transition: outline-width .4s ease-out, 
+                outline-style .4s ease-out, 
+                outline-color .4s ease-out, 
+                outline-offset .4s ease-out;
   }
 
 .swiper-slide img {
@@ -41,8 +45,8 @@
     border-radius: 30px;
     font-weight: 700;
     transform: translate(0, 0);
-    transition: transform 0.4s ease-out, 
-                background-color 0.4s ease-out, 
+    transition: transform .4s ease-out, 
+                background-color .4s ease-out, 
                 font-weight .4s ease-out, 
                 font-size .4s ease-out, 
                 backdrop-filter 0.4s ease-out;

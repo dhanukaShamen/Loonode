@@ -8,10 +8,38 @@ into the {body} tag of the default.hbs template --}}
 {{!-- Everything inside the #post block pulls data from the post --}}
 
 <main id="site-main" class="site-main">
-<article class="article {{post_class}} {{#match @custom.post_image_style "Full"}}image-full{{else match @custom.post_image_style "=" "Small"}}image-small{{/match}}">
+<article class="article {{post_class}} image-full !p-0">
 
     <header class="article-header gh-canvas">
 
+        {{#if feature_image}}
+            <figure class="article-image relative !m-0">
+                <div class="gradient-overlay">
+                {{!-- This is a responsive image, it loads different sizes depending on device
+                https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
+                {{!-- <img
+                    srcset="{{img_url feature_image size="s"}} 300w,
+                            {{img_url feature_image size="m"}} 600w,
+                            {{img_url feature_image size="l"}} 1000w,
+                            {{img_url feature_image size="xl"}} 2000w"
+                    sizes="(min-width: 1400px) 1400px, 92vw"
+                    src="{{img_url feature_image size="xl"}}"
+                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                    class="h-[600px]"
+                />--}}
+                <img style="
+                    background-image: url('{{img_url feature_image size="xl"}}');
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;"
+                    class="h-[600px]"
+                />
+                </div>
+            </figure>
+        {{/if}}
+
+        <div class="absolute flex self-center justify-center flex-col w-full items-center p-2.5 gap-2.5 z-[1]">
         <div class="article-tag post-card-tags">
             {{#primary_tag}}
                 <span class="post-card-primary-tag">
@@ -23,10 +51,10 @@ into the {body} tag of the default.hbs template --}}
             {{/if}}
         </div>
 
-        <h1 class="article-title">{{title}}</h1>
+        <h1 class="article-title text-center !text-white">{{title}}</h1>
 
         {{#if custom_excerpt}}
-            <p class="article-excerpt">{{custom_excerpt}}</p>
+            <p class="article-excerpt text-center !text-white">{{custom_excerpt}}</p>
         {{/if}}
 
         <div class="article-byline">
@@ -58,28 +86,8 @@ into the {body} tag of the default.hbs template --}}
 
         </section>
         </div>
-
-        {{#match @custom.post_image_style "!=" "Hidden"}}
-        {{#if feature_image}}
-            <figure class="article-image">
-                {{!-- This is a responsive image, it loads different sizes depending on device
-                https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
-                <img
-                    srcset="{{img_url feature_image size="s"}} 300w,
-                            {{img_url feature_image size="m"}} 600w,
-                            {{img_url feature_image size="l"}} 1000w,
-                            {{img_url feature_image size="xl"}} 2000w"
-                    sizes="(min-width: 1400px) 1400px, 92vw"
-                    src="{{img_url feature_image size="xl"}}"
-                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                />
-                {{#if feature_image_caption}}
-                    <figcaption>{{feature_image_caption}}</figcaption>
-                {{/if}}
-            </figure>
-        {{/if}}
-        {{/match}}
-
+        </div>
+    
     </header>
 
     <section class="gh-content gh-canvas">

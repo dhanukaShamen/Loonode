@@ -66,7 +66,7 @@
         "defaults"
     ],
     "config": {
-        "posts_per_page": 25,
+        "posts_per_page": 15,
         "image_sizes": {
             "xxs": {
                 "width": 30
@@ -114,14 +114,29 @@
                 ],
                 "default": "Elegant serif"
             },
-            "feed_layout": {
-                "type": "select",
-                "options": [
-                    "Classic",
-                    "Grid",
-                    "List"
-                ],
-                "default": "Classic",
+            "facebook": {
+                "type": "text",
+                "default": "",
+                "group": "homepage"
+            },
+            "instagram": {
+                "type": "text",
+                "default": "",
+                "group": "homepage"
+            },
+            "twitter": {
+                "type": "text",
+                "default": "",
+                "group": "homepage"
+            },
+            "github": {
+                "type": "text",
+                "default": "",
+                "group": "homepage"
+            },
+            "dribbbel": {
+                "type": "text",
+                "default": "",
                 "group": "homepage"
             },
             "color_scheme": {
@@ -132,17 +147,6 @@
                     "Auto"
                 ],
                 "default": "Light"
-            },
-            "post_image_style": {
-                "type": "select",
-                "options": [
-                    "Wide",
-                    "Full",
-                    "Small",
-                    "Hidden"
-                ],
-                "default": "Wide",
-                "group": "post"
             },
             "email_signup_text": {
                 "type": "text",

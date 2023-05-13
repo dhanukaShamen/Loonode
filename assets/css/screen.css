@@ -19,6 +19,7 @@ production stylesheet in assets/built/screen.css
 9.  Error Template
 10.  Site Footer
 11. Dark Mode
+12. Carousel
 
 */
 
@@ -28,10 +29,13 @@ production stylesheet in assets/built/screen.css
 /* Import CSS reset and base styles */
 @import "global.css";
 
-/* Tailwind - add this part */
+/* Tailwind */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@import "cards.css";
+@import "carousel.css";
 
 :root {
 
@@ -42,7 +46,7 @@ production stylesheet in assets/built/screen.css
     --color-darkgrey: #15171A;
     --color-midgrey: #738a94;
     --color-lightgrey: #f1f1f1;
-    --color-secondary-text: #979797;
+    --color-secondary-text: #ededed;
     --color-border: #e1e1e1;
     --color-wash: #e5eff5;
     --color-darkmode: #151719;
@@ -57,8 +61,17 @@ production stylesheet in assets/built/screen.css
      */
 
     /* Fonts */
-    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    --font-serif: Georgia, Times, serif;
+    @font-face {
+        font-family: 'Mona Sans';
+        src:
+          url('assets/fonts/Mona-Sans.woff2') format('woff2 supports variations'),
+          url('assets/fonts/Mona-Sans.woff2') format('woff2-variations');
+        font-weight: 200 900;
+        font-stretch: 75% 125%;
+    }
+
+    --font-sans: 'Mona Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    --font-serif: 'Outfit', 'Mona Sans', Georgia, Times, serif;
     --font-mono: Menlo, Courier, monospace;
 
 }
@@ -71,6 +84,7 @@ production stylesheet in assets/built/screen.css
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow: hidden;
 }
 
 .site-content {
@@ -119,6 +133,18 @@ production stylesheet in assets/built/screen.css
     padding-bottom: 19vmin;
     color: var(--color-darkgrey);
 }
+
+.gradient-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(240, 47, 23, 0) 0%, rgba(0, 0, 0, 0.9) 100%);
+   /* background-image: linear-gradient(180deg,transparent 0,#000);*/
+  }
 
 .has-cover .site-header-content {
     min-height: 560px;
@@ -278,7 +304,7 @@ production stylesheet in assets/built/screen.css
 
 :is(.home-template, .paged:not(.tag-template):not(.author-template)) .gh-head {
     position: absolute;
-    top: 0;
+    /*top: 0;*/
     right: 0;
     left: 0;
     z-index: 2000;
@@ -854,7 +880,10 @@ production stylesheet in assets/built/screen.css
 
 @media (max-width: 991px) {
     .post-feed {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .post-feed article:first-child{
+        grid-column: span 4;
     }
 }
 
@@ -862,6 +891,10 @@ production stylesheet in assets/built/screen.css
     .post-feed {
         grid-template-columns: 1fr;
         grid-gap: 40px;
+    }
+    .post-feed article:first-child{
+        grid-column: span 1;
+        margin-right: -40px;
     }
 }
 
@@ -872,13 +905,17 @@ production stylesheet in assets/built/screen.css
     flex-direction: column;
     background-size: cover;
     word-break: break-word;
+    justify-content: flex-end;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 500px;
 }
 
 .post-card-image-link {
     position: relative;
     overflow: hidden;
     display: block;
-    margin-bottom: 32px;
+    height: 100%;
 }
 
 .post-card-image-link::after {
@@ -890,6 +927,7 @@ production stylesheet in assets/built/screen.css
 .post-card[class*="post-access-"] .post-card-image-link::after {
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(3px);
+    height: 100%;
 }
 
 .post-card.keep-ratio[class*="post-access-"] .post-card-image-link::after {
@@ -920,12 +958,12 @@ production stylesheet in assets/built/screen.css
     inset: 0;
     z-index: 10;
     display: flex;
-    align-items: center;
     justify-content: center;
     gap: 4px;
     font-size: 1.5rem;
     font-weight: 600;
     color: #fff;
+    margin-top: 100px;
 }
 
 .post-card-content-link {
@@ -977,6 +1015,7 @@ production stylesheet in assets/built/screen.css
     font-size: 2.6rem;
     font-weight: 800;
     line-height: 1.2;
+    color: #fff;
 }
 
 .post-card-content-link:hover .post-card-title {
@@ -1001,6 +1040,14 @@ production stylesheet in assets/built/screen.css
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: flex-end;
+    backdrop-filter: blur(20px);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 30px;
+    width: 100%;
 }
 
 .post-card-excerpt {
@@ -1013,6 +1060,7 @@ production stylesheet in assets/built/screen.css
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     word-break: break-word;
+    color: #fff;
 }
 
 .has-sans-body .post-card-excerpt {
@@ -1179,10 +1227,15 @@ make sure this only happens on large viewports / desktop-ish devices.
 /* ---------------------------------------------------------- */
 
 .pagination {
-    display: none;
-    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    margin-top: 8vmin;
+    justify-content: center;
+    display: flex;
+    width: fit-content;
+    margin: 12vmin auto 0;
+    border: 0.5px solid;
+    border-radius: 8px;
+    overflow: hidden;
+    border-color: rgb(212 212 216);
 }
 
 html.no-infinite-scroll .pagination {
@@ -1759,6 +1812,7 @@ iframe.instagram-media + script + :not([id]) {
 .footer-cta {
     position: relative;
     text-align: center;
+    margin-top: 40px;
 }
 
 .footer-cta-title {
@@ -1909,15 +1963,21 @@ iframe.instagram-media + script + :not([id]) {
 .author-profile-social-link {
     font-size: 1.3rem;
     color: var(--color-secondary-text);
-}
-
-.author-profile-social-link:hover {
-    color: var(--color-darkgrey);
+    transition: background-color .3s ease-out, --tw-scale-x .4s ease-out, --tw-scale-y .4s ease-out;
 }
 
 .author-profile-social-link svg {
     width: 16px;
     height: 16px;
+}
+
+.foot svg {
+    width: 20px;
+    height: 20px;
+}
+
+.foot:hover svg{
+    color: white;
 }
 
 @media (min-width: 1001px) {
@@ -2493,7 +2553,7 @@ Hey! You reached the end.
 Hope you enjoyed this CSS file, if you have any suggestions
 for improvements that might be useful for everyone who uses
 this theme, you can find the open source repository for it
-here: https://github.com/tryghost/casper
+here: https://github.com/dhanukaShamen
 
 Or, if you've just scrolled all the way to the bottom of the
 file to add some of your own styles. Well, you've come to

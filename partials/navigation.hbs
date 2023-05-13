@@ -1,0 +1,13 @@
+<ul class="nav">
+    {{#foreach navigation}}
+    {{#if current}}
+    <li class="{{link_class for=(url) class=(concat "nav-" slug)}} text-accent-color font-semibold">
+        <a href="{{url absolute="true"}}">{{label}}</a>
+    </li>
+    {{else}}
+    <li class="{{link_class for=(url) class=(concat "nav-" slug)}} hover:text-accent-color font-semibold duration-150">
+        <a href="{{url absolute="true"}}">{{label}}</a>
+    </li>
+    {{/if}}
+    {{/foreach}}
+</ul>

@@ -1,0 +1,42 @@
+<footer class="p-4 bg-white sm:p-6 dark:bg-gray-900 outer mt-40">
+    <div class="inner">
+        <div class="flex justify-between mb-2">
+            <div class="w-80">
+                <a href="{{@site.url}}" class="flex items-center mb-3">
+                    <img src="{{@site.logo}}" class="h-16 mr-3 rounded-2xl" alt="{{@site.title}}" />
+                    <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white">{{@site.title}}</span>
+                </a>
+                <span class="self-center text-2xl font-normal text-gray-600">{{@site.description}}</span>
+                <div class="flex gap-3 mt-3">
+                    {{#if @custom.facebook}}
+                        <a class="foot rounded-xl p-3 hover:bg-[#4267B2] hover:scale-110" href="{{twitter_url}}" target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
+                    {{/if}}
+                    {{#if @custom.instagram}}
+                        <a class="foot rounded-xl p-3 hover:bg-[#E1306C] hover:scale-110" href="{{twitter_url}}" target="_blank" rel="noopener">{{> "icons/instagram"}}</a>
+                    {{/if}}
+                    {{#if @custom.twitter}}
+                        <a class="foot rounded-xl p-3 hover:bg-[#1DA1F2] hover:scale-110" href="{{twitter_url}}" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
+                    {{/if}}
+                    {{#if @custom.github}}
+                        <a class="foot rounded-xl p-3 hover:bg-[#1DA1F2] hover:scale-110" href="{{twitter_url}}" target="_blank" rel="noopener">{{> "icons/github"}}</a>
+                    {{/if}}
+                    {{#if @custom.dribbbel}}
+                        <a class="foot rounded-xl p-3 hover:bg-[#ea4c89] hover:scale-110" href="{{twitter_url}}" target="_blank" rel="noopener">{{> "icons/dribbbel"}}</a>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="">
+                <header>Secondary Navigation</header>
+                <ul class="">
+                    {{#navigation type="secondary"}}
+                    {{#foreach navigation}}
+                        <li class="{{#if current}}  {{/if}}"><a href="{{url absolute="true"}}">{{label}}</a></li>
+                    {{/foreach}}
+                    {{/navigation}}
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="gh-powered-by mt-8 text-center"><a href="https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a></div>
+    </div>
+</footer>

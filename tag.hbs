@@ -3,16 +3,14 @@
 
 <main id="site-main" class="site-main outer">
 <div class="inner posts">
-    <div class="post-feed">
-
-        {{#tag}}
-        <section class="post-card post-card-large">
+    {{#tag}}
+        <section class="relative rounded-2xl overflow-hidden">
 
             {{#if feature_image}}
-            <div class="post-card-image-link">
+            <div class="relative h-[300px] w-full gradient-overlay">
                 {{!-- This is a responsive image, it loads different sizes depending on device
                 https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
-                <img class="post-card-image"
+                <img 
                     srcset="{{img_url feature_image size="s"}} 300w,
                             {{img_url feature_image size="m"}} 600w,
                             {{img_url feature_image size="l"}} 1000w,
@@ -20,16 +18,17 @@
                     sizes="(max-width: 1000px) 400px, 800px"
                     src="{{img_url feature_image size="m"}}"
                     alt="{{title}}"
+                    class="w-full h-full object-cover"
                 />
             </div>
             {{/if}}
 
-            <div class="post-card-content">
-            <div class="post-card-content-link">
-                <header class="post-card-header">
-                    <h2 class="post-card-title">{{name}}</h2>
+            <div class="absolute top-0 w-full h-full z-[1]">
+            <div class="relative h-full flex flex-col justify-center items-center text-center text-white gap-3">
+                <header class="rounded-full backdrop-blur-md py-4 px-5">
+                    <h2 class="">{{name}}</h2>
                 </header>
-                <div class="post-card-excerpt">
+                <div class="">
                     {{#if description}}
                         {{description}}
                     {{else}}
@@ -41,6 +40,8 @@
 
         </section>
         {{/tag}}
+        
+    <div class="post-feed">
 
         {{#foreach posts}}
             {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}

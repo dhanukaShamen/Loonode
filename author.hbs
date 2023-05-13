@@ -4,16 +4,15 @@
 <main id="site-main" class="site-main outer">
 <div class="inner posts">
 
-    <div class="post-feed">
 
-        {{#author}}
-        <section class="post-card post-card-large">
+    {{#author}}
+        <section class="relative rounded-3xl overflow-hidden">
 
             {{#if cover_image}}
-            <div class="post-card-image-link">
+            <div class="gradient-overlay relative">
                 {{!-- This is a responsive image, it loads different sizes depending on device
                 https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
-                <img class="post-card-image"
+                <img class="relative w-full h-[360px] object-cover"
                     srcset="{{img_url cover_image size="s"}} 300w,
                             {{img_url cover_image size="m"}} 600w,
                             {{img_url cover_image size="l"}} 1000w,
@@ -23,37 +22,55 @@
                     alt="{{title}}"
                 />
             </div>
+            {{else}}
+            {{#if @site.cover_image}}
+            <div class="gradient-overlay">
+                {{!-- This is a responsive image, it loads different sizes depending on device
+                https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
+                <img class="relative w-full h-[360px] object-cover"
+                    srcset="{{img_url @site.cover_image size size="s"}} 300w,
+                            {{img_url @site.cover_image size size="m"}} 600w,
+                            {{img_url @site.cover_image size size="l"}} 1000w,
+                            {{img_url @site.cover_image size size="xl"}} 2000w"
+                    sizes="(max-width: 1000px) 400px, 800px"
+                    src="{{img_url @site.cover_image size size="m"}}"
+                    alt="{{@site.title}}"
+                />
+            </div>
+            {{/if}}
             {{/if}}
 
-            <div class="post-card-content">
-            <div class="post-card-content-link">
+            <div class="absolute top-0 w-full h-full flex items-center justify-center text-center z-[1]">
+            <div class="flex flex-col items-center justify-center text-white">
 
                 {{#if profile_image}}
-                    <img class="author-profile-pic" src="{{profile_image}}" alt="{{name}}" />
+                    <img class="author-profile-pic outline outline-offset-4 outline-4 outline-accent-color" src="{{profile_image}}" alt="{{name}}" />
                 {{/if}}
 
-                <header class="post-card-header">
-                    <h2 class="post-card-title">{{name}}</h2>
+                <header class="mb-3">
+                    <h2 class="">{{name}}</h2>
                 </header>
 
                 {{#if bio}}
-                    <div class="post-card-excerpt">{{bio}}</div>
+                    <div class="max-w-7xl">{{bio}}</div>
                 {{/if}}
 
                 <footer class="author-profile-footer">
                     {{#if location}}
-                        <div class="author-profile-location">{{location}}</div>
+                        <div class="author-profile-location flex items-center justify-center gap-1 mb-2">{{> "icons/location"}} {{location}}</div>
                     {{/if}}
-                    <div class="author-profile-meta">
+                    <div class="author-profile-meta flex-col items-center">
                         {{#if website}}
-                            <a class="author-profile-social-link" href="{{website}}" target="_blank" rel="noopener">{{website}}</a>
+                            <a class="author-profile-social-link hover:underline hover:underline-offset-2" href="{{website}}" target="_blank" rel="noopener">{{website}}</a>
                         {{/if}}
-                        {{#if twitter}}
-                            <a class="author-profile-social-link" href="{{twitter_url}}" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
-                        {{/if}}
-                        {{#if facebook}}
-                            <a class="author-profile-social-link" href="{{facebook_url}}" target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
-                        {{/if}}
+                        <div class="flex gap-3">
+                            {{#if twitter}}
+                                <a class="author-profile-social-link rounded-xl p-3 hover:bg-[#1DA1F2] hover:scale-110" href="{{twitter_url}}" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
+                            {{/if}}
+                            {{#if facebook}}
+                                <a class="author-profile-social-link rounded-xl p-3 hover:bg-[#4267B2] hover:scale-110" href="{{facebook_url}}" target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
+                            {{/if}}
+                        </div>
                     </div>
                 </footer>
 
@@ -61,7 +78,9 @@
             </div>
 
         </section>
-        {{/author}}
+    {{/author}}
+
+    <div class="post-feed">
 
         {{#foreach posts}}
             {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
