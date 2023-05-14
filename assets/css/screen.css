@@ -19,7 +19,6 @@ production stylesheet in assets/built/screen.css
 9.  Error Template
 10.  Site Footer
 11. Dark Mode
-12. Carousel
 
 */
 
@@ -2181,7 +2180,8 @@ html.dark-mode figcaption a {
     color: #fff;
 }
 
-html.dark-mode .gh-head {
+html.dark-mode .gh-head,
+html.dark-mode .has-cover:not(.home-template) .gh-head {
     background: var(--color-darkmode);
     color: #fff;
 }
@@ -2349,8 +2349,9 @@ html.dark-mode .footer-cta-title {
 }
 
 @media (max-width: 767px) {
+    html.dark-mode .gh-head-open #gh-head,
     html.dark-mode .gh-head-open #gh-head .gh-head-actions {
-        background-color: var(--color-darkmode);
+        background: var(--color-darkmode);
     }
 }
 
@@ -2372,7 +2373,8 @@ html.dark-mode .footer-cta-title {
         color: #fff;
     }
 
-    html.auto-color .gh-head {
+    html.auto-color .gh-head,
+    html.auto-color .has-cover:not(.home-template) .gh-head {
         background: var(--color-darkmode);
         color: #fff;
     }
@@ -2540,6 +2542,7 @@ html.dark-mode .footer-cta-title {
     }
 
     @media (max-width: 767px) {
+        html.auto-color .gh-head-open #gh-head,
         html.auto-color .gh-head-open #gh-head .gh-head-actions {
             background-color: var(--color-darkmode);
         }
